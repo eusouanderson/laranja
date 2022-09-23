@@ -1,72 +1,76 @@
 from tkinter import *
 from tkinter import ttk
 import psutil
-
-'''import matplotlib.pyplot as plt
-import numpy as np'''
+import matplotlib.pyplot as plt
+import numpy as np
+from PIL import Image, ImageTk
+from time import sleep
 
 
 class Application:
     def __init__(self, master=None):
-        self.img = PhotoImage(file='orange.png', height=550)
-        self.menubar = Menu(ws, background='#ff8000', foreground='black', activebackground='white',
-                            activeforeground='black', bg=color)
-        self.file = Menu(self.menubar, tearoff=1, background='#ffcc99', foreground='black')
-        self.file.add_command(label="New")
-        self.menubar.add_cascade(label="Arquivo", menu=self.file)
-        self.menubar.add_cascade(label="Opções", menu=self.file)
-        self.menubar.add_cascade(label="Game", menu=self.file)
-        self.menubar.add_cascade(label="Help", menu=self.file)
+        self.img = PhotoImage(file='orange.png')
 
-        ws.config(menu=self.menubar)
         self.widget1 = Frame(master, bg=color)
         self.widget1.pack(side='bottom')
+        self.img1 = Label(master, image=self.img, background=color)
+        self.img1.pack()
 
-        self.msg = Label(self.widget1, image=self.img, text="Todos os direitos rservados", bg=color)
-        self.msg["font"] = ("Verdana", "20", "italic", "bold")
-        self.msg.pack(fill='both')
+        self.otm = Button(self.widget1, bg=color, activebackground=color1, bd=1)
+        self.otm["text"] = "Otimizar"
+        self.otm["font"] = ("Calibri", "10")
+        self.otm["width"] = 10
+        self.otm["command"] = self.otmizar
+        self.otm.pack()
 
-        self.test = Button(self.widget1, bg=color, activebackground=color, bd=1)
-        self.test["text"] = "Otimizar"
-        self.test["font"] = ("Calibri", "10")
-        self.test["width"] = 10
-        self.test["command"] = ''
-        self.test.place(x=5, y=10)
-
-        self.sair = Button(self.widget1, bg=color, activebackground=color, bd=1)
-        self.sair["text"] = "Sair"
-        self.sair["font"] = ("Calibri", "10")
-        self.sair["width"] = 10
-        self.sair["command"] = self.widget1.quit
-        self.sair.pack()
-
-        self.test = Button(self.widget1, bg=color, activebackground=color, bd=1)
+        self.test = Button(self.widget1, bg=color, activebackground=color1, bd=1)
         self.test["text"] = "Testar"
         self.test["font"] = ("Calibri", "10")
         self.test["width"] = 10
         self.test["command"] = self.testar
         self.test.pack()
 
-        self.msg4 = Label(ws, text='', bg=color)
-        self.msg4["font"] = ("Verdana", "10", "italic", "bold")
-        self.msg4.place(x=30, y=140)
+        self.graf = Button(self.widget1, bg=color, activebackground=color, bd=1)
+        self.graf["text"] = "Gráfico"
+        self.graf["font"] = ("Calibri", "10")
+        self.graf["width"] = 10
+        self.graf["command"] = self.grafico
+        self.graf.pack()
+
+        self.sair = Button(self.widget1, bg=color, activebackground=color1, bd=1)
+        self.sair["text"] = "Sair"
+        self.sair["font"] = ("Calibri", "10")
+        self.sair["width"] = 10
+        self.sair["command"] = self.widget1.quit
+        self.sair.pack()
+
+    def otmizar(self):
+        self.load = Image.open('orange.png')
+        self.render = PhotoImage(self.load)
+        self.img = Label(self, image=self.render)
+        self.fps.overrideredirect(True)
+        self.imgFPS.pack(side=TOP, ipadx=25, pady=25)
 
     def testar(self):
         self.msg = Label(ws, text='Numero de Processadores', bg=color)
-        self.msg["font"] = ("Verdana", "10", "italic", "bold")
-        self.msg.place(x=40, y=60)
+        self.msg["font"] = ("BungeeSpice Regular", "10", "italic")
+        self.msg.place(x=20, y=60)
 
         self.msg = Label(ws, text='Frequencia do Processador', bg=color)
-        self.msg["font"] = ("Verdana", "10", "italic", "bold")
-        self.msg.place(x=40, y=100)
+        self.msg["font"] = ("BungeeSpice Regular", "10", "italic")
+        self.msg.place(x=20, y=100)
 
         self.msg = Label(ws, text='Processos abertos', bg=color)
-        self.msg["font"] = ("Verdana", "10", "italic", "bold")
-        self.msg.place(x=40, y=150)
+        self.msg["font"] = ("BungeeSpice Regular", "10", "italic")
+        self.msg.place(x=20, y=150)
 
-        self.pb = ttk.Progressbar(ws, orient='horizontal', mode='determinate', length=600)
+        self.pb = ttk.Progressbar(ws, orient='horizontal', mode='determinate', length=600, maximum=50)
+        self.pb.winfo_visual()
         self.pb.place(x=0, y=0)
         self.pb.start()
+        if self.pb['value'] < 100:
+            self.pb.stop()
+
         self.numero_cpu = psutil.cpu_count()
         self.frequencia_cpu = psutil.cpu_freq().current
         self.todosProcessos = psutil.pids()
@@ -74,43 +78,45 @@ class Application:
         self.processos.parent()
         self.processos = (len(self.todosProcessos))
 
-        for proc in psutil.process_iter(['pid', 'name']):
+        ronw = 0
+        lin = 50
+        for proc in psutil.process_iter(['name']):
             processos = proc.info
-
             print(processos)
 
-            self.msg = Label(ws, text=processos, bg=color, width=80, height=20)
-            self.msg["font"] = ("Verdana", "5", "italic", "bold")
-            self.msg.place(x=40, y=250)
-
         self.msg = Label(ws, text=self.numero_cpu, bg=color)
-        self.msg["font"] = ("Verdana", "10", "italic", "bold")
+        self.msg["font"] = ("BungeeSpice Regular", "10", "italic")
         self.msg.place(x=40, y=80)
 
         self.msg = Label(ws, text=self.frequencia_cpu, bg=color)
-        self.msg["font"] = ("Verdana", "10", "italic", "bold")
+        self.msg["font"] = ("BungeeSpice Regular", "10", "italic")
         self.msg.place(x=40, y=120)
 
         self.msg = Label(ws, text=self.processos, bg=color)
-        self.msg["font"] = ("Verdana", "10", "italic", "bold")
+        self.msg["font"] = ("BungeeSpice Regular", "10", "italic")
         self.msg.place(x=40, y=180)
 
-        '''
-        plt.style.use('_mpl-gallery')
+    def grafico(self):
+        self.plt = plt.style.use('_mpl-gallery')
         self.xpoints = ([(float(psutil.cpu_freq().min)), 2, 6, 8])
         self.ypoints = np.array([3, 8, 1, (float(psutil.cpu_freq().max))])
+        while not self.test.__init__():
+            self.plt = plt.style.use('_mpl-gallery')
+            self.xpoints = ([(float(psutil.cpu_freq().min)), 2, 6, 8])
+            self.ypoints = np.array([3, 8, 1, (float(psutil.cpu_freq().max))])
+            self.plot = plt.plot(self.xpoints, self.ypoints)
+            self.plot = plt.show()
+            return
 
-        plt.plot(self.xpoints, self.ypoints)
-        plt.show()
-        plt.autoscale()
-        '''
 
 ws = Tk()
+ws.overrideredirect(True)
 ws.title('Laranja')
 icon = PhotoImage(master=ws, file='orange.png')
 ws.wm_iconphoto(True, icon)
 ws.geometry('600x600+400+50')
 color = '#ffa525'
+color1 = '#ffa125'
 ws.config(bg='#ffa500')
 Application(ws)
 ws.mainloop()
