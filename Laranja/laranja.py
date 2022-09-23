@@ -1,16 +1,12 @@
 from tkinter import *
 from tkinter import ttk
 import psutil
-import matplotlib.pyplot as plt
-import numpy as np
-from PIL import Image, ImageTk
-from time import sleep
+from Laranja.graphic import Scope
 
 
 class Application:
     def __init__(self, master=None):
         self.img = PhotoImage(file='orange.png')
-
         self.widget1 = Frame(master, bg=color)
         self.widget1.pack(side='bottom')
         self.img1 = Label(master, image=self.img, background=color)
@@ -20,7 +16,7 @@ class Application:
         self.otm["text"] = "Otimizar"
         self.otm["font"] = ("Calibri", "10")
         self.otm["width"] = 10
-        self.otm["command"] = self.otmizar
+        self.otm["command"] = ''
         self.otm.pack()
 
         self.test = Button(self.widget1, bg=color, activebackground=color1, bd=1)
@@ -34,7 +30,7 @@ class Application:
         self.graf["text"] = "Gráfico"
         self.graf["font"] = ("Calibri", "10")
         self.graf["width"] = 10
-        self.graf["command"] = self.grafico
+        self.graf["command"] = Scope
         self.graf.pack()
 
         self.sair = Button(self.widget1, bg=color, activebackground=color1, bd=1)
@@ -44,12 +40,6 @@ class Application:
         self.sair["command"] = self.widget1.quit
         self.sair.pack()
 
-    def otmizar(self):
-        self.load = Image.open('orange.png')
-        self.render = PhotoImage(self.load)
-        self.img = Label(self, image=self.render)
-        self.fps.overrideredirect(True)
-        self.imgFPS.pack(side=TOP, ipadx=25, pady=25)
 
     def testar(self):
         self.msg = Label(ws, text='Numero de Processadores', bg=color)
@@ -96,17 +86,6 @@ class Application:
         self.msg["font"] = ("BungeeSpice Regular", "10", "italic")
         self.msg.place(x=40, y=180)
 
-    def grafico(self):
-        self.plt = plt.style.use('_mpl-gallery')
-        self.xpoints = ([(float(psutil.cpu_freq().min)), 2, 6, 8])
-        self.ypoints = np.array([3, 8, 1, (float(psutil.cpu_freq().max))])
-        while not self.test.__init__():
-            self.plt = plt.style.use('_mpl-gallery')
-            self.xpoints = ([(float(psutil.cpu_freq().min)), 2, 6, 8])
-            self.ypoints = np.array([3, 8, 1, (float(psutil.cpu_freq().max))])
-            self.plot = plt.plot(self.xpoints, self.ypoints)
-            self.plot = plt.show()
-            return
 
 
 ws = Tk()
