@@ -46,7 +46,7 @@ class Application:
         self.graf['text'] = 'Gráfico'
         self.graf['font'] = ('Calibri', '10')
         self.graf['width'] = 10
-        self.graf['command'] = Scope
+        self.graf['command'] = Scope(ax)
         self.graf.pack()
 
         self.sair = Button(
