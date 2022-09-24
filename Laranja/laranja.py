@@ -105,22 +105,34 @@ class Application:
 
 
 class Scope:
-    def __init__(self, ax, maxt=2, dt=0.01):
+    def __init__(self, ax, maxt=1, dt=1):
         self.ax = ax
         self.dt = dt
         self.maxt = maxt
         self.tdata = [0]
         self.ydata = [0]
-        self.line = Line2D(self.tdata, self.ydata)
+        self.line = Line2D(
+            self.tdata,
+            self.ydata,
+            linewidth=10,
+            color='#ffa525',
+            gapcolor='red',
+            fillstyle='full',
+        )
         self.ax.add_line(self.line)
-        self.ax.set_ylim(-0.1, 1.1)
+        self.pEnvi = [net_io_counters().packets_sent]
+        self.plis = np.array((self.pEnvi[:1]))
+        self.lim = 1000
+        self.ax.set_ylim(-0.1, self.plis + self.lim + self.lim)
         self.ax.set_xlim(0, self.maxt)
 
     def update(self, y):
+
         lastt = self.tdata[-1]
         if lastt > self.tdata[0] + self.maxt:  # reset the arrays
             self.tdata = [self.tdata[-1]]
             self.ydata = [self.ydata[-1]]
+            self.ax.set_ylim(self.ydata[0], self.ydata[0], self.ydata[0] + 100)
             self.ax.set_xlim(self.tdata[0], self.tdata[0] + self.maxt)
             self.ax.figure.canvas.draw()
 
@@ -128,6 +140,7 @@ class Scope:
         self.tdata.append(t)
         self.ydata.append(y)
         self.line.set_data(self.tdata, self.ydata)
+
         return (self.line,)
 
 
@@ -137,24 +150,23 @@ def emitter(p=0.1):
     while True:
         # bRece = [psutil.net_io_counters().bytes_recv]
         pEnvi = [net_io_counters().packets_sent]
+        print(pEnvi)
+        vp = 1
+        if vp > p:
+            yield np.array((pEnvi[:1]))
 
-        v = np.array(pEnvi[:0])
-
-        if v > p:
-            yield 0.0
         else:
             yield np.random.rand(1)
 
 
-# Fixing random state for reproducibility
 np.random.seed(19680801 // 10)
-
+fig1 = plt.figure()
+ax1 = fig1.add_subplot(2, 3, 1)
 fig, ax = plt.subplots()
 scope = Scope(ax)
 
-# pass a generator in "emitter" to produce data for the update func
 ani = animation.FuncAnimation(
-    fig, scope.update, emitter, interval=50, blit=True
+    fig, scope.update, emitter, interval=100, blit=False
 )
 plt.show()
 
