@@ -1,16 +1,17 @@
+from tkinter import Button, Frame, Label, PhotoImage, Tk, ttk
+
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib import animation
+from matplotlib.lines import Line2D
 from psutil import (
+    Process,
     cpu_count,
     cpu_freq,
-    pids,
     net_io_counters,
+    pids,
     process_iter,
-    Process,
 )
-from tkinter import PhotoImage, ttk, Frame, Label, Button, Tk
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.lines import Line2D
-from matplotlib import animation
 
 
 class Application:
@@ -46,7 +47,7 @@ class Application:
         self.graf['text'] = 'Gráfico'
         self.graf['font'] = ('Calibri', '10')
         self.graf['width'] = 10
-        self.graf['command'] = Scope(ax)
+        self.graf['command'] = Scope
         self.graf.pack()
 
         self.sair = Button(
@@ -160,15 +161,15 @@ def emitter(p=0.1):
 
 
 np.random.seed(19680801 // 10)
-fig1 = plt.figure()
-ax1 = fig1.add_subplot(2, 3, 1)
-fig, ax = plt.subplots()
-scope = Scope(ax)
 
+fig, ax = plt.subplots()
+
+scope = Scope(ax)
 ani = animation.FuncAnimation(
     fig, scope.update, emitter, interval=100, blit=False
 )
 plt.show()
+
 
 ws = Tk()
 ws.overrideredirect(True)
@@ -179,5 +180,6 @@ ws.geometry('600x600+400+50')
 color = '#ffa525'
 color1 = '#ffa125'
 ws.config(bg='#ffa500')
-Application(ws)
+App = Application(ws)
+
 ws.mainloop()
