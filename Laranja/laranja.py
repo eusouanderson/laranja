@@ -4,14 +4,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import animation
 from matplotlib.lines import Line2D
-from psutil import (
-    Process,
-    cpu_count,
-    cpu_freq,
-    net_io_counters,
-    pids,
-    process_iter,
-)
+from psutil import (Process, cpu_count, cpu_freq, net_io_counters, pids,
+                    process_iter)
 
 
 class Application:
@@ -106,7 +100,7 @@ class Application:
 
 
 class Scope:
-    def __init__(self, ax, maxt=1, dt=1):
+    def __int__(self, ax, maxt=1, dt=1):
         self.ax = ax
         self.dt = dt
         self.maxt = maxt
