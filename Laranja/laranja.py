@@ -1,17 +1,8 @@
-import random
 from tkinter import *
+from psutil import *
+from random import randint
 
-import matplotlib.pyplot as plt
-import numpy as np
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from psutil import (
-    Process,
-    cpu_count,
-    cpu_freq,
-    net_io_counters,
-    pids,
-    process_iter,
-)
+
 
 
 class Software:
@@ -114,7 +105,7 @@ class Software:
 
         def upcolor():
 
-            cor = random.randint(0, 5)
+            cor = randint(0, 5)
             if cor == 0:
                 self.ws.config(bg=vicolor)
             if cor == 1:
@@ -231,7 +222,7 @@ class Software:
         self.ws.overrideredirect(True)
         self.icon = PhotoImage(master=self.ws, file='orange.png')
 
-        self.figura = plt.Figure(figsize=(10, 4), dpi=60)
+        self.figura = Figure(figsize=(10, 4), dpi=60)
         self.ax = self.figura.add_subplot(111)
 
         canva = FigureCanvasTkAgg(self.figura, self.ws)
