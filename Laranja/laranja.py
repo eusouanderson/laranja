@@ -1,11 +1,17 @@
 import random
-from tkinter import Button, Frame, Label, PhotoImage, Tk, ttk
+from tkinter import *
 
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from psutil import (Process, cpu_count, cpu_freq, net_io_counters, pids,
-                    process_iter)
+from psutil import (
+    Process,
+    cpu_count,
+    cpu_freq,
+    net_io_counters,
+    pids,
+    process_iter,
+)
 
 
 class Software:
@@ -18,14 +24,13 @@ class Software:
         height = self.ws.winfo_screenheight() - 100
         self.ws.geometry('%dx%d' % (width, height))
         self.ws.overrideredirect(False)
-        self.ws.attributes("-transparentcolor", 'grey', "-alpha", 0.5)
+        self.ws.attributes('-transparentcolor', 'grey', '-alpha', 8)
 
         self.icon = PhotoImage(master=self.ws, file='orange.png')
 
         self.img = PhotoImage(file='orange.png')
-        self.img1 = Label(self.ws, image=self.img)
+        self.img1 = Label(self.ws, image=self.img, background=self.color)
         self.img1.pack()
-
 
         self.ws.wm_iconphoto(True, self.icon)
         self.ws.config(bg=self.color)
@@ -117,10 +122,30 @@ class Software:
             if cor == 2:
                 self.ws.config(bg=rubcolor)
             if cor == 3:
+                self.img1 = Label(
+                    self.ws, image=self.img, background=darkcolor
+                )
                 self.ws.config(bg=darkcolor)
             if cor == 4:
                 self.ws.config(bg=redcolor)
                 self.ws.update_idletasks()
+
+        def FPS():
+            self.color = color
+            self.ws1 = Tk()
+            self.ws1.title('Laranja')
+            self.ws1.geometry('200x200+1150+500')
+            self.ws1.overrideredirect(True)
+            self.ws1.attributes('-transparentcolor', 'grey', '-alpha', 0.5)
+            img = PhotoImage(open('orange.png'))
+
+            canvas = Canvas(self.ws1, width=600, height=400)
+            canvas.create_image(10, 10, anchor=NW, image=img)
+            canvas.pack()
+
+            return self.ws.wm_minsize()
+
+            ...
 
         self.bto1['text'] = 'Investigate'
         self.bto1['command'] = self.func
@@ -135,7 +160,7 @@ class Software:
         self.bto3.grid(row=0, column=2)
 
         self.bto4['text'] = 'Force FPS'
-        self.bto4['command'] = ''
+        self.bto4['command'] = FPS
         self.bto4.grid(row=0, column=3)
 
         self.bto5['text'] = 'Internet Control'
