@@ -1,26 +1,31 @@
+import random
 from tkinter import Button, Frame, Label, PhotoImage, Tk, ttk
 
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from matplotlib.lines import Line2D
 from psutil import (Process, cpu_count, cpu_freq, net_io_counters, pids,
                     process_iter)
 
 
 class Software:
-    def __init__(self, color, colorbutton):
+    def __init__(self, colorbutton):
+
         self.color = color
         self.ws = Tk()
+        self.ws.title('Laranja')
         width = self.ws.winfo_screenwidth() - 500
         height = self.ws.winfo_screenheight() - 100
         self.ws.geometry('%dx%d' % (width, height))
-        self.ws.overrideredirect(True)
+        self.ws.overrideredirect(False)
+        self.ws.attributes("-transparentcolor", 'grey', "-alpha", 0.5)
+
         self.icon = PhotoImage(master=self.ws, file='orange.png')
 
         self.img = PhotoImage(file='orange.png')
-        self.img1 = Label(self.ws, image=self.img, background=color)
+        self.img1 = Label(self.ws, image=self.img)
         self.img1.pack()
+
 
         self.ws.wm_iconphoto(True, self.icon)
         self.ws.config(bg=self.color)
@@ -100,6 +105,22 @@ class Software:
             width=10,
             fg=brcolor,
         )
+        self.color = color
+
+        def upcolor():
+
+            cor = random.randint(0, 5)
+            if cor == 0:
+                self.ws.config(bg=vicolor)
+            if cor == 1:
+                self.ws.config(bg=orcolor)
+            if cor == 2:
+                self.ws.config(bg=rubcolor)
+            if cor == 3:
+                self.ws.config(bg=darkcolor)
+            if cor == 4:
+                self.ws.config(bg=redcolor)
+                self.ws.update_idletasks()
 
         self.bto1['text'] = 'Investigate'
         self.bto1['command'] = self.func
@@ -121,12 +142,12 @@ class Software:
         self.bto5['command'] = ''
         self.bto5.grid(row=0, column=4)
 
-        self.bto6['text'] = 'Brute Force'
+        self.bto6['text'] = 'Brute Ping'
         self.bto6['command'] = ''
         self.bto6.grid(row=0, column=5)
 
         self.bto7['text'] = 'Color'
-        self.bto7['command'] = ''
+        self.bto7['command'] = upcolor
         self.bto7.grid(row=0, column=6)
 
         self.bto8['text'] = 'Sair'
@@ -225,4 +246,4 @@ redcolor = '#ff0000'
 color = vicolor
 brcolor = '#ffffff'
 
-App = Software(color=vicolor, colorbutton=orcolor)
+App = Software(colorbutton=orcolor)
