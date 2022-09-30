@@ -101,7 +101,7 @@ class Software:
             fg=brcolor,
         )
 
-        self.bto1['text'] = 'Pesquisar'
+        self.bto1['text'] = 'Investigate'
         self.bto1['command'] = self.func
         self.bto1.grid(row=0, column=0)
 
@@ -109,23 +109,23 @@ class Software:
         self.bto2['command'] = self.newwindow
         self.bto2.grid(row=0, column=1)
 
-        self.bto3['text'] = 'Colorir'
+        self.bto3['text'] = 'Otmizar'
         self.bto3['command'] = ''
         self.bto3.grid(row=0, column=2)
 
-        self.bto4['text'] = 'Colorir'
+        self.bto4['text'] = 'Force FPS'
         self.bto4['command'] = ''
         self.bto4.grid(row=0, column=3)
 
-        self.bto5['text'] = 'Colorir'
+        self.bto5['text'] = 'Internet Control'
         self.bto5['command'] = ''
         self.bto5.grid(row=0, column=4)
 
-        self.bto6['text'] = 'Colorir'
+        self.bto6['text'] = 'Brute Force'
         self.bto6['command'] = ''
         self.bto6.grid(row=0, column=5)
 
-        self.bto7['text'] = 'Colorir'
+        self.bto7['text'] = 'Color'
         self.bto7['command'] = ''
         self.bto7.grid(row=0, column=6)
 
