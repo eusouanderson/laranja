@@ -5,5 +5,8 @@
 ![](Laranja/Screenshot2.png)
 ![](Laranja/Sreenshot.png)
 ![](Laranja/Screenshot3.png)
+<p>--Alpha Version--
+    
+</p>
 
 [Laranja.exe](https://github.com/eusouanderson/Laranja/raw/main/Laranja/%5Blaranja.exe%5D/%5Blaranja.exe%5D.rar)
