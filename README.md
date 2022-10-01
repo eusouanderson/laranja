@@ -6,4 +6,4 @@
 ![](Laranja/Sreenshot.png)
 ![](Laranja/Screenshot3.png)
 
-[Laranja.exe](Laranja/dist/laranja.exe)
+[Laranja.exe](laranja.exe)
