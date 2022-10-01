@@ -1,13 +1,11 @@
-from tkinter import *
-from psutil import *
 from random import randint
+from tkinter import *
 
-
+from psutil import *
 
 
 class Software:
     def __init__(self, colorbutton):
-
 
         self.color = 'blue'
         self.ws = Tk()
@@ -103,7 +101,6 @@ class Software:
             fg=brcolor,
         )
 
-
         def upcolor():
 
             cor = randint(0, 5)
@@ -130,7 +127,6 @@ class Software:
             self.ws1.overrideredirect(True)
             self.ws1.attributes('-transparentcolor', 'grey', '-alpha', 0.5)
             img = PhotoImage(open('orange.png'))
-
 
         self.bto1['text'] = 'Investigate'
         self.bto1['command'] = self.func
@@ -207,7 +203,6 @@ class Software:
         self.ws.mainloop()
 
     def newwindow(self):
-
 
         self.ws = Tk()
         width = self.ws.winfo_screenwidth()

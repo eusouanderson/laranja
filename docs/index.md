@@ -4,7 +4,7 @@ For full documentation visit ......
 
 ## Commands
 
-* `Laranja new ` - Projeto em versão alpha .
+* `Laranja new ` - Projeto em version alpha .
 * `......` - Start the live-reloading docs server.
 * `......` - Build the documentation site.
 * `......` - Print help message and exit.
