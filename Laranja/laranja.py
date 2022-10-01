@@ -8,23 +8,24 @@ from random import randint
 class Software:
     def __init__(self, colorbutton):
 
-        self.color = color
+
+        self.color = 'blue'
         self.ws = Tk()
         self.ws.title('Laranja')
         width = self.ws.winfo_screenwidth() - 500
-        height = self.ws.winfo_screenheight() - 100
+        height = self.ws.winfo_screenheight() - 110
         self.ws.geometry('%dx%d' % (width, height))
         self.ws.overrideredirect(False)
         self.ws.attributes('-transparentcolor', 'grey', '-alpha', 8)
 
         self.icon = PhotoImage(master=self.ws, file='orange.png')
-
         self.img = PhotoImage(file='orange.png')
-        self.img1 = Label(self.ws, image=self.img, background=self.color)
+
+        self.img1 = Label(self.ws, image=self.img, bg=vicolor)
         self.img1.pack()
 
         self.ws.wm_iconphoto(True, self.icon)
-        self.ws.config(bg=self.color)
+        self.ws.config(bg=vicolor)
 
         self.widget = Frame(self.ws)
         self.widget.pack(side='bottom')
@@ -101,13 +102,13 @@ class Software:
             width=10,
             fg=brcolor,
         )
-        self.color = color
+
 
         def upcolor():
 
             cor = randint(0, 5)
             if cor == 0:
-                self.ws.config(bg=vicolor)
+                self.ws.config(bg=vicolor, image=self.img)
             if cor == 1:
                 self.ws.config(bg=orcolor)
             if cor == 2:
@@ -122,7 +123,7 @@ class Software:
                 self.ws.update_idletasks()
 
         def FPS():
-            self.color = color
+
             self.ws1 = Tk()
             self.ws1.title('Laranja')
             self.ws1.geometry('200x200+1150+500')
@@ -130,13 +131,6 @@ class Software:
             self.ws1.attributes('-transparentcolor', 'grey', '-alpha', 0.5)
             img = PhotoImage(open('orange.png'))
 
-            canvas = Canvas(self.ws1, width=600, height=400)
-            canvas.create_image(10, 10, anchor=NW, image=img)
-            canvas.pack()
-
-            return self.ws.wm_minsize()
-
-            ...
 
         self.bto1['text'] = 'Investigate'
         self.bto1['command'] = self.func
@@ -214,7 +208,7 @@ class Software:
 
     def newwindow(self):
 
-        self.color = color
+
         self.ws = Tk()
         width = self.ws.winfo_screenwidth()
         height = self.ws.winfo_screenheight()
@@ -259,7 +253,6 @@ vicolor = '#bf00ff'
 rubcolor = '#e0115f'
 darkcolor = '#000'
 redcolor = '#ff0000'
-color = vicolor
 brcolor = '#ffffff'
 
 App = Software(colorbutton=orcolor)
