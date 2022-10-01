@@ -6,4 +6,4 @@
 ![](Laranja/Sreenshot.png)
 ![](Laranja/Screenshot3.png)
 
-[Laranja.exe](laranja.exe)
+[Laranja.exe](https://github.com/eusouanderson/Laranja/raw/main/Laranja/%5Blaranja.exe%5D/%5Blaranja.exe%5D.rar)
