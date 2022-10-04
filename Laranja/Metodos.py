@@ -8,7 +8,6 @@ def init_screen_and_clock():
     screen = pygame.display.set_mode(WINDOW_SIZE, 0, 32)
     clock = pygame.time.Clock()
 
-
 def create_fonts(font_sizes_list):
     "Creates different fonts with one list"
     fonts = []

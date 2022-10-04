@@ -1,8 +1,9 @@
 from random import randint
 from tkinter import *
-
+import pygame
 from psutil import *
-import Metodos
+
+
 
 
 class Software:
@@ -32,7 +33,7 @@ class Software:
 
         self.bto1 = Button(
             self.widget,
-            bg=self.colorL,
+            bg=self.colorB,
             activebackground=self.color,
             bd=1,
             borderwidth=4,
@@ -41,7 +42,7 @@ class Software:
         )
         self.bto2 = Button(
             self.widget,
-            bg=self.colorL,
+            bg=self.colorB,
             activebackground=self.color,
             bd=1,
             borderwidth=4,
@@ -50,7 +51,7 @@ class Software:
         )
         self.bto3 = Button(
             self.widget,
-            bg=self.colorL,
+            bg=self.colorB,
             activebackground=self.color,
             bd=1,
             borderwidth=4,
@@ -59,7 +60,7 @@ class Software:
         )
         self.bto4 = Button(
             self.widget,
-            bg=self.colorL,
+            bg=self.colorB,
             activebackground=self.color,
             bd=1,
             borderwidth=4,
@@ -68,7 +69,7 @@ class Software:
         )
         self.bto5 = Button(
             self.widget,
-            bg=self.colorL,
+            bg=self.colorB,
             activebackground=self.color,
             bd=1,
             borderwidth=4,
@@ -77,7 +78,7 @@ class Software:
         )
         self.bto6 = Button(
             self.widget,
-            bg=self.colorL,
+            bg=self.colorB,
             activebackground=self.color,
             bd=1,
             borderwidth=4,
@@ -86,7 +87,7 @@ class Software:
         )
         self.bto7 = Button(
             self.widget,
-            bg=self.colorL,
+            bg=self.colorB,
             activebackground=self.color,
             bd=1,
             borderwidth=4,
@@ -95,7 +96,7 @@ class Software:
         )
         self.bto8 = Button(
             self.widget,
-            bg=self.colorL,
+            bg=self.colorB,
             activebackground=self.color,
             bd=1,
             borderwidth=4,
@@ -104,12 +105,8 @@ class Software:
         )
 
         def upcolor():
-
-            cor = 1
-            if cor == 1:
-                self.color = brcolor
-                self.colorL = darkcolor
-                self.colorB = vicolor
+            self.ws.config = vicolor
+            return
 
 
 
@@ -122,9 +119,16 @@ class Software:
             self.ws1.attributes('-topmost', 'true')
             self.ws1.overrideredirect(True)
             self.ws1.attributes('-transparentcolor', 'grey', '-alpha', 8)
-            self.img1 = Label(self.ws1, bg=vicolor, height=height, width=width)
+            self.img1 = Label(self.ws1, bg=self.color, height=height, width=width)
             self.img1.pack()
-            return self.ws.iconify()
+            clock = pygame.time.Clock()
+            while True:
+                clock.tick()
+
+                self.img1['text'] = clock.get_fps()
+                break
+
+
 
         self.bto1['text'] = 'Investigate'
         self.bto1['command'] = self.scanner
@@ -218,4 +222,4 @@ darkcolor = '#000'
 redcolor = '#ff0000'
 brcolor = '#ffffff'
 
-App = Software(colorbutton=darkcolor, color=orcolor, colorletra=darkcolor)
+App = Software(colorbutton=vicolor, color=rubcolor, colorletra=redcolor)
