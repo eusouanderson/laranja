@@ -122,18 +122,22 @@ class Software:
         def FPS():
 
             self.ws1 = Tk()
-            self.ws1.title('Laranja')
-            self.ws1.geometry('200x200+1150+500')
+            width = 50
+            height = 50
+            self.ws1.geometry('%dx%d' % (width, height))
+            self.ws1.attributes('-topmost', 'true')
             self.ws1.overrideredirect(True)
-            self.ws1.attributes('-transparentcolor', 'grey', '-alpha', 0.5)
-            img = PhotoImage(open('orange.png'))
+            self.ws1.attributes('-transparentcolor', 'grey', '-alpha', 8)
+            self.img1 = Label(self.ws1, bg=vicolor, height=height, width=width)
+            self.img1.pack()
+            return self.ws.iconify()
 
         self.bto1['text'] = 'Investigate'
         self.bto1['command'] = self.func
         self.bto1.grid(row=0, column=0)
 
         self.bto2['text'] = 'Grafico'
-        self.bto2['command'] = self.newwindow
+        self.bto2['command'] = self.graphic
         self.bto2.grid(row=0, column=1)
 
         self.bto3['text'] = 'Otmizar'
@@ -202,8 +206,7 @@ class Software:
         self.msg.place(x=40, y=160)
         self.ws.mainloop()
 
-    def newwindow(self):
-
+    def graphic(self):
         self.ws = Tk()
         width = self.ws.winfo_screenwidth()
         height = self.ws.winfo_screenheight()
