@@ -2,12 +2,14 @@ from random import randint
 from tkinter import *
 
 from psutil import *
+import Metodos
 
 
 class Software:
-    def __init__(self, colorbutton):
-
-        self.color = 'blue'
+    def __init__(self, colorbutton, color, colorletra):
+        self.colorL = colorletra
+        self.colorB = colorbutton
+        self.color = color
         self.ws = Tk()
         self.ws.title('Laranja')
         width = self.ws.winfo_screenwidth() - 500
@@ -19,18 +21,18 @@ class Software:
         self.icon = PhotoImage(master=self.ws, file='orange.png')
         self.img = PhotoImage(file='orange.png')
 
-        self.img1 = Label(self.ws, image=self.img, bg=vicolor)
+        self.img1 = Label(self.ws, image=self.img, bg=color)
         self.img1.pack()
 
         self.ws.wm_iconphoto(True, self.icon)
-        self.ws.config(bg=vicolor)
+        self.ws.config(bg=color)
 
         self.widget = Frame(self.ws)
         self.widget.pack(side='bottom')
 
         self.bto1 = Button(
             self.widget,
-            bg=colorbutton,
+            bg=self.colorL,
             activebackground=self.color,
             bd=1,
             borderwidth=4,
@@ -39,7 +41,7 @@ class Software:
         )
         self.bto2 = Button(
             self.widget,
-            bg=colorbutton,
+            bg=self.colorL,
             activebackground=self.color,
             bd=1,
             borderwidth=4,
@@ -48,7 +50,7 @@ class Software:
         )
         self.bto3 = Button(
             self.widget,
-            bg=colorbutton,
+            bg=self.colorL,
             activebackground=self.color,
             bd=1,
             borderwidth=4,
@@ -57,7 +59,7 @@ class Software:
         )
         self.bto4 = Button(
             self.widget,
-            bg=colorbutton,
+            bg=self.colorL,
             activebackground=self.color,
             bd=1,
             borderwidth=4,
@@ -66,7 +68,7 @@ class Software:
         )
         self.bto5 = Button(
             self.widget,
-            bg=colorbutton,
+            bg=self.colorL,
             activebackground=self.color,
             bd=1,
             borderwidth=4,
@@ -75,7 +77,7 @@ class Software:
         )
         self.bto6 = Button(
             self.widget,
-            bg=colorbutton,
+            bg=self.colorL,
             activebackground=self.color,
             bd=1,
             borderwidth=4,
@@ -84,7 +86,7 @@ class Software:
         )
         self.bto7 = Button(
             self.widget,
-            bg=colorbutton,
+            bg=self.colorL,
             activebackground=self.color,
             bd=1,
             borderwidth=4,
@@ -93,7 +95,7 @@ class Software:
         )
         self.bto8 = Button(
             self.widget,
-            bg=colorbutton,
+            bg=self.colorL,
             activebackground=self.color,
             bd=1,
             borderwidth=4,
@@ -103,21 +105,13 @@ class Software:
 
         def upcolor():
 
-            cor = randint(0, 5)
-            if cor == 0:
-                self.ws.config(bg=vicolor, image=self.img)
+            cor = 1
             if cor == 1:
-                self.ws.config(bg=orcolor)
-            if cor == 2:
-                self.ws.config(bg=rubcolor)
-            if cor == 3:
-                self.img1 = Label(
-                    self.ws, image=self.img, background=darkcolor
-                )
-                self.ws.config(bg=darkcolor)
-            if cor == 4:
-                self.ws.config(bg=redcolor)
-                self.ws.update_idletasks()
+                self.color = brcolor
+                self.colorL = darkcolor
+                self.colorB = vicolor
+
+
 
         def FPS():
 
@@ -133,7 +127,7 @@ class Software:
             return self.ws.iconify()
 
         self.bto1['text'] = 'Investigate'
-        self.bto1['command'] = self.func
+        self.bto1['command'] = self.scanner
         self.bto1.grid(row=0, column=0)
 
         self.bto2['text'] = 'Grafico'
@@ -166,19 +160,18 @@ class Software:
 
         self.ws.mainloop()
 
-    def func(self):
-        color = vicolor
-        self.msg = Label(self.ws, bg=color)
+    def scanner(self):
+        self.msg = Label(self.ws, bg=self.color, background=self.color)
         self.msg['text'] = 'Numero de Processadores'
         self.msg['font'] = font
         self.msg.place(x=20, y=60)
 
-        self.msg = Label(self.ws, bg=color)
+        self.msg = Label(self.ws, bg=self.color, background=self.color)
         self.msg['text'] = 'Frequencia do Processador'
         self.msg['font'] = font
         self.msg.place(x=20, y=100)
 
-        self.msg = Label(self.ws, bg=color)
+        self.msg = Label(self.ws, bg=self.color, background=self.color)
         self.msg['text'] = 'Processos abertos'
         self.msg['font'] = font
         self.msg.place(x=20, y=140)
@@ -193,56 +186,28 @@ class Software:
             processos = proc.info
             print(processos)
 
-        self.msg = Label(self.ws, text=self.numero_cpu, bg=color)
+        self.msg = Label(self.ws, text=self.numero_cpu, bg=self.color)
         self.msg['font'] = ('BungeeSpice Regular', '10', 'italic')
         self.msg.place(x=40, y=80)
 
-        self.msg = Label(self.ws, text=self.frequencia_cpu, bg=color)
+        self.msg = Label(self.ws, text=self.frequencia_cpu, bg=self.color)
         self.msg['font'] = ('BungeeSpice Regular', '10', 'italic')
         self.msg.place(x=40, y=120)
 
-        self.msg = Label(self.ws, text=self.processos, bg=color)
+        self.msg = Label(self.ws, text=self.processos, bg=self.color)
         self.msg['font'] = ('BungeeSpice Regular', '10', 'italic')
         self.msg.place(x=40, y=160)
         self.ws.mainloop()
 
     def graphic(self):
-        self.ws = Tk()
+        self.ws2 = Tk()
         width = self.ws.winfo_screenwidth()
         height = self.ws.winfo_screenheight()
-        self.ws.geometry('%dx%d' % (width, height))
-        self.ws.overrideredirect(True)
-        self.icon = PhotoImage(master=self.ws, file='orange.png')
+        self.ws2.geometry('%dx%d' % (width, height))
+        self.ws2.overrideredirect(True)
+        self.icon = PhotoImage(master=self.ws2, file='orange.png')
 
-        self.figura = Figure(figsize=(10, 4), dpi=60)
-        self.ax = self.figura.add_subplot(111)
-
-        canva = FigureCanvasTkAgg(self.figura, self.ws)
-        canva.get_tk_widget().grid(row=0, column=0)
-
-    def emitter(p=0.1):
-        global pEnvi
-
-        while True:
-            # bRece = [psutil.net_io_counters().bytes_recv]
-            pEnvi = [net_io_counters().packets_sent]
-            print(pEnvi)
-            vp = 1
-            if vp > p:
-                yield np.array((pEnvi[:1]))
-
-            else:
-                yield np.random.rand(1)
-        np.random.seed(19680801 // 10)
-
-        fig, ax = plt.subplots()
-
-        ani = animation.FuncAnimation(
-            fig, update, emitter, interval=100, blit=False
-        )
-        plt.show()
-
-        self.ws.mainloop()
+        return self.ws
 
 
 font = 'Calibri', '10'
@@ -253,4 +218,4 @@ darkcolor = '#000'
 redcolor = '#ff0000'
 brcolor = '#ffffff'
 
-App = Software(colorbutton=orcolor)
+App = Software(colorbutton=darkcolor, color=orcolor, colorletra=darkcolor)
