@@ -1,6 +1,5 @@
 from random import randint
 from tkinter import *
-import pygame
 from psutil import *
 
 

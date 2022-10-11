@@ -7,6 +7,10 @@
 ![](Laranja/Screenshot3.png)
 ![](Laranja/Screenshot1.png)
 
+
+# At the moment I find unemployed and this is the working month if you want to be a sponsor of the project and have your name engraved on the software here my Qr code , thank you very much ...
+
+![](Laranja/code.png)
 <p>--Alpha Version--
     
 </p>
