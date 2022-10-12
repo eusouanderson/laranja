@@ -11,4 +11,4 @@ For full documentation visit ......
 
 ## Project layout
 
-![](../Laranja/orange.png)
+![](../Laranja/Screenshots/orange.png)
