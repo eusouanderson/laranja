@@ -43,7 +43,10 @@ while loop:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             loop = 0
-    clock.tick(100)
+
+    frame = 180
+    clock.tick(frame)
+    print(clock.get_fps())
     pygame.display.flip()
 
 pygame.quit()

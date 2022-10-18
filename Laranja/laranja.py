@@ -1,6 +1,5 @@
-from random import randint
 from tkinter import *
-from psutil import *
+from psutil import cpu_freq, cpu_count, Process, pids, process_iter
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -202,7 +201,8 @@ class Software:
                 plt.show()
 
         return self.ws
-
+    def Fps(self):
+        ...
 
 font = 'Calibri', '10'
 orcolor = '#00ff51'
