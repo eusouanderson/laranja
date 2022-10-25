@@ -6,17 +6,59 @@ import numpy as np
 
 
 class Software:
+
     def __init__(self, colorbutton, color, colorletra):
+
         self.colorL = colorletra
         self.colorB = colorbutton
         self.color = color
         self.ws = Tk()
         self.ws.title('Laranja')
+
         width = self.ws.winfo_screenwidth() - 500
         height = self.ws.winfo_screenheight() - 110
         self.ws.geometry('%dx%d' % (width, height))
-        self.ws.overrideredirect(True)
+        self.ws.overrideredirect(False)
         self.ws.attributes('-transparentcolor', 'grey', '-alpha', 8)
+        '''Menubar'''
+        self.menubar = Menu(self.ws)
+        self.ws.config(menu=self.menubar)
+
+        file_menu = Menu(self.menubar, tearoff=False)
+        help_menu = Menu(self.menubar, tearoff=0)
+
+        file_menu.add_command(
+            label='Novo',
+        )
+        file_menu.add_command(
+            label='Abrir'
+        )
+        file_menu.add_command(
+            label='Iniciar'
+        )
+        file_menu.add_command(
+            label='Salvar'
+        )
+        file_menu.add_command(
+            label='PrintScreen'
+        )
+        file_menu.add_separator()
+
+        file_menu.add_command(
+            label='Sair',
+            command=self.ws.destroy,
+        )
+
+        self.menubar.add_cascade(
+            label='Arquivo',
+            menu=file_menu,
+            command=''
+        )
+        self.menubar.add_cascade(
+            label='Temas',
+            menu=help_menu,
+            command=''
+        )
 
         self.icon = PhotoImage(master=self.ws, file='Screenshots/orange.png')
         self.img = PhotoImage(file='Screenshots/orange.png')
