@@ -1,3 +1,4 @@
+import random
 from tkinter import *
 from psutil import cpu_freq, cpu_count, Process, pids, process_iter
 import matplotlib.pyplot as plt
@@ -79,7 +80,7 @@ class Software:
             bd=1,
             borderwidth=4,
             width=10,
-            fg=brcolor,
+            fg=self.colorL,
         )
         self.bto1['text'] = 'Investigate'
         self.bto1['command'] = self.scanner
@@ -92,7 +93,7 @@ class Software:
             bd=1,
             borderwidth=4,
             width=10,
-            fg=brcolor,
+            fg=self.colorL,
         )
         self.bto2['text'] = 'Grafico'
         self.bto2['command'] = self.graphic
@@ -106,7 +107,7 @@ class Software:
             bd=1,
             borderwidth=4,
             width=10,
-            fg=brcolor,
+            fg=self.colorL,
         )
         self.bto3['text'] = 'Otmizar'
         self.bto3['command'] = ''
@@ -119,7 +120,7 @@ class Software:
             bd=1,
             borderwidth=4,
             width=10,
-            fg=brcolor,
+            fg=self.colorL,
         )
         self.bto4['text'] = 'FPS'
         self.bto4['command'] = ''
@@ -132,7 +133,7 @@ class Software:
             bd=1,
             borderwidth=4,
             width=10,
-            fg=brcolor,
+            fg=self.colorL,
         )
         self.bto5['text'] = 'Net Control'
         self.bto5['command'] = ''
@@ -145,7 +146,7 @@ class Software:
             bd=1,
             borderwidth=4,
             width=10,
-            fg=brcolor,
+            fg=self.colorL,
         )
         self.bto6['text'] = 'Ping'
         self.bto6['command'] = ''
@@ -158,24 +159,12 @@ class Software:
             bd=1,
             borderwidth=4,
             width=10,
-            fg=brcolor,
+            fg=self.colorL,
         )
         self.bto7['text'] = 'Color'
         self.bto7['command'] = ''
         self.bto7.grid(row=0, column=6)
 
-        self.bto8 = Button(
-            self.widget,
-            bg=self.colorB,
-            activebackground=self.color,
-            bd=1,
-            borderwidth=4,
-            width=10,
-            fg=brcolor,
-        )
-        self.bto8['text'] = 'Sair'
-        self.bto8['command'] = self.widget.quit
-        self.bto8.grid(row=0, column=7)
         self.ws.mainloop()
 
     def scanner(self):
@@ -203,6 +192,8 @@ class Software:
         for proc in process_iter(['name']):
             processos = proc.info
             print(processos)
+
+
 
         self.msg = Label(self.ws, text=self.numero_cpu, bg=self.color)
         self.msg['font'] = ('BungeeSpice Regular', '10', 'italic')
@@ -243,8 +234,6 @@ class Software:
                 plt.show()
 
         return self.ws
-    def Fps(self):
-        ...
 
 font = 'Calibri', '10'
 orcolor = '#00ff51'
@@ -253,5 +242,10 @@ rubcolor = '#e0115f'
 darkcolor = '#000'
 redcolor = '#ff0000'
 brcolor = '#ffffff'
+mist = [orcolor, vicolor, rubcolor, darkcolor, redcolor, brcolor]
+collor_aleator = (mist[random.randint(0, len(mist) - 1)])
+collor_aleator1 = brcolor
+if collor_aleator == '#ffffff':
+    collor_aleator1 = darkcolor
 
-App = Software(colorbutton=rubcolor, color=brcolor, colorletra=redcolor)
+App = Software(colorbutton=collor_aleator, colorletra=collor_aleator1, color=collor_aleator)
