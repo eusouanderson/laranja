@@ -248,4 +248,5 @@ collor_aleator1 = brcolor
 if collor_aleator == '#ffffff':
     collor_aleator1 = darkcolor
 
-App = Software(colorbutton=collor_aleator, colorletra=collor_aleator1, color=collor_aleator)
+if __name__ == "__main__":
+    App = Software(colorbutton=collor_aleator, colorletra=collor_aleator1, color=collor_aleator)
